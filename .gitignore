@@ -1,0 +1,22 @@
+# Dependencias y salidas temporales
+node_modules/
+work/
+outputs/
+.sites-runtime/
+
+# Archivos de configuración local
+.openai/
+.env
+.env.*
+!.env.example
+
+# Originales conservados fuera de la publicación
+assets/originales/
+
+# Archivos del sistema y registros
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+
+
