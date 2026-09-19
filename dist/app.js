@@ -284,9 +284,14 @@
     const imageElement = card?.querySelector("[data-gallery-image]");
     const photoButton = card?.querySelector("[data-photo-memory]");
     if (imageElement) {
-      imageElement.src = image.src;
-      imageElement.alt = image.alt;
-      imageElement.style.objectPosition = image.position || "50% 50%";
+      const nextImageElement = document.createElement("img");
+      nextImageElement.src = image.src;
+      nextImageElement.alt = image.alt;
+      nextImageElement.style.objectPosition = image.position || "50% 50%";
+      nextImageElement.loading = "eager";
+      nextImageElement.decoding = "async";
+      nextImageElement.dataset.galleryImage = "";
+      imageElement.replaceWith(nextImageElement);
     }
     if (photoButton) {
       photoButton.dataset.photoIndex = String(nextIndex);
