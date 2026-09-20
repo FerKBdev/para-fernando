@@ -35,7 +35,7 @@ window.FERNANDO_CONTENT = {
       body: "Sé cuánto te esforzaste para hacer tu discurso y me alegra poder celebrar contigo este momento y todo el esfuerzo que hay detrás.",
       sideNote: "Y después de tanto esfuerzo… una buena comida no estaría nada mal.",
       featuredImage: {
-        src: "",
+        src: "assets/fotos/discurso-publico-alameda.jpg",
         alt: "Fernando dando su primer discurso público en la congregación Alameda",
         position: "50% 50%",
         placeholder: "Aquí va el recuerdo de este día"
