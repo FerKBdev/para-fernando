@@ -527,7 +527,16 @@ h1 {
   overflow: hidden;
   padding-block: clamp(2rem, 5vh, 3rem);
 }
-.dedication-card { position: relative; z-index: 1; max-width: 47rem; }
+.dedication-layout {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  display: grid;
+  column-gap: clamp(1.75rem, 4vw, 3.5rem);
+  row-gap: 1.25rem;
+  align-items: center;
+}
+.dedication-card { min-width: 0; max-width: 47rem; }
 .dedication-card .chapter-title { max-width: 12ch; }
 .dedication-body { max-width: 42rem; margin: 1.3rem 0 0; color: var(--ink-soft); font-size: 1.08rem; }
 .signature-block { display: grid; width: fit-content; margin-top: 2rem; }
@@ -535,6 +544,31 @@ h1 {
 .signature-block strong { color: #8a651f; font-family: var(--serif); font-size: 2.3rem; font-style: italic; font-weight: 500; transform: rotate(-2deg); }
 .closing-note { max-width: 34rem; margin: 1.5rem 0 0; padding-top: 1rem; border-top: 1px solid rgba(16, 42, 63, 0.18); font-size: 0.88rem; }
 .secondary-button { margin-top: 1rem; }
+.dedication-photo-frame {
+  width: min(100%, 21rem);
+  justify-self: center;
+  padding: 0.45rem;
+  background: var(--paper);
+  border: 1px solid rgba(201, 154, 67, 0.48);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow-soft);
+  transform: rotate(1deg);
+}
+.dedication-photo-button {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  display: block;
+  padding: 0;
+  overflow: hidden;
+  cursor: zoom-in;
+  background: var(--ink-deep);
+  border: 0;
+  border-radius: 0.9rem;
+}
+.dedication-photo-button img { width: 100%; height: 100%; display: block; object-fit: contain; }
+.dedication-photo-button:focus-visible { outline: 3px solid var(--gold-bright); outline-offset: 4px; }
+.dedication-layout > .secondary-button { justify-self: start; margin-top: 0; }
 .dedication-stamp {
   position: absolute;
   right: -2.5rem;
@@ -594,6 +628,8 @@ h1 {
   .chapter-memories { gap: 1.4rem; }
   .congratulations-layout { gap: 1.5rem; }
   .chapter-congratulations .side-note { justify-self: stretch; width: 100%; }
+  .dedication-layout { align-items: start; }
+  .dedication-photo-frame { width: min(100%, 19rem); margin-top: 0.25rem; transform: none; }
   .lightbox { width: 96vw; max-width: 96vw; max-height: 94vh; }
   .lightbox figure { max-height: 94vh; }
   .lightbox img { max-height: 77vh; }
@@ -610,6 +646,15 @@ h1 {
   .memory-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .chapter-memories { padding-top: 2.5rem; padding-bottom: 2.5rem; }
   .chapter-appreciation { grid-template-columns: minmax(16rem, 0.8fr) minmax(24rem, 1.2fr); align-items: center; }
+  .dedication-layout {
+    grid-template-columns: minmax(0, 1.25fr) minmax(17rem, 0.75fr);
+    grid-template-areas: "copy photo" "action photo";
+  }
+  .dedication-card { grid-area: copy; }
+  .dedication-photo-frame { grid-area: photo; }
+  .dedication-layout > .secondary-button { grid-area: action; }
+  .chapter-dedication .chapter-title { font-size: clamp(2.2rem, 4vw, 3.8rem); }
+  .chapter-dedication .signature-block { margin-top: 1.5rem; }
   .quality-list li { grid-template-columns: 2.8rem 1fr; gap: 1.1rem; padding: 1.2rem 0; }
 }
 

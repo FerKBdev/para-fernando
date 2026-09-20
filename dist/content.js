@@ -130,7 +130,12 @@ window.FERNANDO_CONTENT = {
       body: "Fernando, espero que disfrutes este logro y todo lo bueno que viene con él. Que este álbum siga creciendo con nuevas fotos, nuevas comidas y muchos momentos que valga la pena recordar.",
       signoff: "De chamo a chamo, con aprecio,",
       signature: "Samuel",
-      closing: "Y ahora sí, chamo… ¡queda pendiente una carrera de go-karts para celebrar!"
+      closing: "Y ahora sí, chamo… ¡queda pendiente una carrera de go-karts para celebrar!",
+      image: {
+        src: "assets/fotos/familias-juntas.jpg",
+        alt: "Seis personas posando juntas en una reunión con globos morados",
+        position: "50% 50%"
+      }
     }
   ]
 };

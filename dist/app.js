@@ -173,17 +173,35 @@
     </section>
   `;
 
+  const renderDedicationPhoto = (chapter) => {
+    const image = chapter.image;
+    if (!image?.src) return "";
+
+    return `
+      <div class="dedication-photo-frame">
+        <button class="dedication-photo-button" type="button" data-dedication-photo aria-label="Ampliar foto: ${escapeHtml(image.alt)}">
+          <img src="${escapeHtml(image.src)}" alt="${escapeHtml(image.alt)}" style="object-position: ${escapeHtml(image.position || "50% 50%")}"
+               loading="lazy" decoding="async">
+          <span class="photo-expand">${icon("expand")}<span>Ampliar</span></span>
+        </button>
+      </div>
+    `;
+  };
+
   const renderDedication = (chapter) => `
     <section class="chapter chapter-dedication" aria-labelledby="chapter-title">
-      <div class="dedication-card">
-        <p class="eyebrow">${escapeHtml(chapter.eyebrow)}</p>
-        <h1 class="chapter-title" id="chapter-title">${escapeHtml(chapter.title)}</h1>
-        <p class="dedication-body">${escapeHtml(chapter.body)}</p>
-        <div class="signature-block">
-          <span>${escapeHtml(chapter.signoff)}</span>
-          <strong>${escapeHtml(chapter.signature)}</strong>
+      <div class="dedication-layout">
+        <div class="dedication-card">
+          <p class="eyebrow">${escapeHtml(chapter.eyebrow)}</p>
+          <h1 class="chapter-title" id="chapter-title">${escapeHtml(chapter.title)}</h1>
+          <p class="dedication-body">${escapeHtml(chapter.body)}</p>
+          <div class="signature-block">
+            <span>${escapeHtml(chapter.signoff)}</span>
+            <strong>${escapeHtml(chapter.signature)}</strong>
+          </div>
+          <p class="closing-note">${escapeHtml(chapter.closing)}</p>
         </div>
-        <p class="closing-note">${escapeHtml(chapter.closing)}</p>
+        ${renderDedicationPhoto(chapter)}
         <button class="secondary-button" type="button" data-go="2">${icon("arrowLeft")} ${escapeHtml(content.navigation.backToAlbum)}</button>
       </div>
       <div class="dedication-stamp" aria-hidden="true">S · F</div>
@@ -371,6 +389,10 @@
     root.querySelector("[data-featured-photo]")?.addEventListener("click", (event) => {
       const chapter = content.chapters[1];
       openLightbox({ title: chapter.title, images: [chapter.featuredImage], index: 0, opener: event.currentTarget });
+    });
+    root.querySelector("[data-dedication-photo]")?.addEventListener("click", (event) => {
+      const chapter = content.chapters.find((item) => item.id === "dedicatoria");
+      openLightbox({ title: chapter.title, images: [chapter.image], index: 0, opener: event.currentTarget });
     });
     root.querySelector(".lightbox-close")?.addEventListener("click", () => dialog.close());
     root.querySelector("[data-lightbox-previous]")?.addEventListener("click", () => updateLightbox(lightboxState.index - 1));
